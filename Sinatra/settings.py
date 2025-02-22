@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     "djoser",
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
+    "API",
+    "User",
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -73,9 +75,9 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    'DEFAULT_PERMISSION_CLASSES': [
-        'User.custom_django_model_permissions.RoleBasedPermissions',
-    ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'User.custom_django_model_permissions.RoleBasedPermissions',
+    # ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
 }
@@ -218,3 +220,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'User.CustomUser'
+

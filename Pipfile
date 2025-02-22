@@ -14,6 +14,7 @@ gunicorn = "*"
 python-decouple = "*"
 djoser = "*"
 whitenoise = "*"
+boto3 = "*"
 
 [dev-packages]
 
