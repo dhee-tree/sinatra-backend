@@ -26,7 +26,7 @@ COPY . .
 #RUN python manage.py collectstatic --noinput
 
 # Expose the port the app runs on
-EXPOSE 8000:8000
+EXPOSE 8000
 
 # Start the Django app with Gunicorn
 CMD ["gunicorn", "Sinatra.wsgi:application", "--bind", "0.0.0.0:8000"]
