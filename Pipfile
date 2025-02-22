@@ -6,6 +6,14 @@ name = "pypi"
 [packages]
 django = "*"
 pillow = "*"
+djangorestframework = "*"
+django-cors-headers = "*"
+djangorestframework-simplejwt = "*"
+psycopg2-binary = "*"
+gunicorn = "*"
+python-decouple = "*"
+djoser = "*"
+whitenoise = "*"
 
 [dev-packages]
 

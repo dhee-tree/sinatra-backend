@@ -1,0 +1,21 @@
+.vercel
+*.log
+*.pyc
+__pycache__
+backup-db.sqlite3
+db.sqlite3
+media
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+Pipfile.lock
+.idea/
+.vscode/
+
+.env.dev
