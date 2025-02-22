@@ -145,36 +145,28 @@ WSGI_APPLICATION = 'Sinatra.wsgi.application'
 
 if DATABASE_DEPLOYMENT_ENVIRONMENT == DatabaseEnvironments.PRODUCTION:
     DATABASES = {
-        'default': {
-            'ENGINE': "django.db.backends.postgresql",
-            'NAME': config("VPS_POSTGRES_PRODUCTION_DATABASE"),
-            'USER': config("VPS_POSTGRES_USER"),
-            'PASSWORD': config("VPS_POSTGRES_PASSWORD"),
-            'HOST': config("VPS_POSTGRES_HOST"),
-            'PORT': 5432,
-        }
+    'default': {
+        'ENGINE': config("ENGINE"),
+        'NAME': config("VPS_POSTGRES_DEVELOPMENT_DATABASE"),
+        'USER': config("VPS_POSTGRES_USER"),
+        'PASSWORD': config("VPS_POSTGRES_PASSWORD"),
+        'HOST': config("VPS_POSTGRES_HOST"),
+        'PORT': '5432',
     }
+}
 elif DATABASE_DEPLOYMENT_ENVIRONMENT == DatabaseEnvironments.DEVELOPMENT:
-    DDATABASES = {
+    DATABASES = {
         'default': {
-            'ENGINE': "django.db.backends.postgresql",
+            'ENGINE': config("ENGINE"),
             'NAME': config("VPS_POSTGRES_DEVELOPMENT_DATABASE"),
             'USER': config("VPS_POSTGRES_USER"),
             'PASSWORD': config("VPS_POSTGRES_PASSWORD"),
             'HOST': config("VPS_POSTGRES_HOST"),
-            'PORT': 5432,
-            'TEST': {
-                'NAME': 'test_ccp-development',
-                'CREATE': {
-                    'TEMPLATES': None,
-                    'EXISTING': False,
-                }
-            }
+            'PORT': '5432',
         }
     }
 else:
     raise Exception(f"DATABASE env var does not exist. Value = '{DATABASE_DEPLOYMENT_ENVIRONMENT}'")
-
 
 
 # Password validation
