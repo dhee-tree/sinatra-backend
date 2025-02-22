@@ -146,7 +146,18 @@ WSGI_APPLICATION = 'Sinatra.wsgi.application'
 if DATABASE_DEPLOYMENT_ENVIRONMENT == DatabaseEnvironments.PRODUCTION:
     DATABASES = {
         'default': {
-            'ENGINE': "django_tenants.postgresql_backend",
+            'ENGINE': "django.db.backends.postgresql",
+            'NAME': config("VPS_POSTGRES_PRODUCTION_DATABASE"),
+            'USER': config("VPS_POSTGRES_USER"),
+            'PASSWORD': config("VPS_POSTGRES_PASSWORD"),
+            'HOST': config("VPS_POSTGRES_HOST"),
+            'PORT': 5432,
+        }
+    }
+elif DATABASE_DEPLOYMENT_ENVIRONMENT == DatabaseEnvironments.DEVELOPMENT:
+    DDATABASES = {
+        'default': {
+            'ENGINE': "django.db.backends.postgresql",
             'NAME': config("VPS_POSTGRES_DEVELOPMENT_DATABASE"),
             'USER': config("VPS_POSTGRES_USER"),
             'PASSWORD': config("VPS_POSTGRES_PASSWORD"),
@@ -159,13 +170,6 @@ if DATABASE_DEPLOYMENT_ENVIRONMENT == DatabaseEnvironments.PRODUCTION:
                     'EXISTING': False,
                 }
             }
-        }
-    }
-elif DATABASE_DEPLOYMENT_ENVIRONMENT == DatabaseEnvironments.DEVELOPMENT:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
 else:
