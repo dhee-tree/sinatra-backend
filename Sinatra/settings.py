@@ -143,6 +143,7 @@ WSGI_APPLICATION = 'Sinatra.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 if DATABASE_DEPLOYMENT_ENVIRONMENT == DatabaseEnvironments.PRODUCTION:
     DATABASES = {
     'default': {
