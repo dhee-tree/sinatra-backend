@@ -2,6 +2,7 @@
 *.log
 *.pyc
 __pycache__
+*/__pycache__/*
 backup-db.sqlite3
 db.sqlite3
 media
