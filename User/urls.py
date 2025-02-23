@@ -10,5 +10,4 @@ urlpatterns = [
     # path('<int:user_id>/skills', UserSkillsView.as_view(), name='user-skills'),
     # path ("view/all", SkillListView.as_view(), name='user-viewallskills'),
     # path ('assign/<uuid:skill_id>', AsignSkillView.as_view(), name='assign-skill'),
-
 ]
