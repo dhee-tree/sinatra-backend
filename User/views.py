@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
+from Organisation.models import Organisation
 
 from User.models import CustomUser
 from User.serializers import UserSignupSerializer, UserSerializer
@@ -15,13 +16,7 @@ class UserListView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
-        cache_key = f'all_users_list_{request.user.organisation.uuid}'
-        cached_data = cache.get(cache_key)
-        if cached_data:
-            queryset = cached_data
-        else:
-            queryset = CustomUser.objects.filter(organisation=request.user.organisation).order_by('first_name')
-            cache.set(cache_key, queryset, timeout=600)
+        queryset = Organisation.objects.filter(created_by=request.user)
 
         # serializer = CustomUserSerializer(queryset, many=True)
         serializer = UserSignupSerializer(queryset, many=True)

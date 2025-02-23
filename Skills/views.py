@@ -16,7 +16,7 @@ class UserSkillsView(generics.ListAPIView):
     def get_queryset(self):
         user_uuid = self.kwargs['user_uuid']
         user = get_object_or_404(CustomUser, uuid=user_uuid)
-        return Skill.objects.filter(user=user)
+        return Skill.objects.filter(users=user)
 
 class SkillListView(generics.ListAPIView):
     queryset = Skill.objects.all()
@@ -57,6 +57,6 @@ class DeleteUserSkillView(generics.DestroyAPIView):
     def destroy(self, request, *args, **kwargs):
         skill = self.get_object()
         user_uuid = self.kwargs['user_uuid']
-        user = get_object_or_404(CustomUser, uuid=user_id)
+        user = get_object_or_404(CustomUser, uuid=user_uuid)
         user.skills.remove(skill)
         return Response({"message": "Skill deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
