@@ -3,7 +3,6 @@ from django.contrib.auth.models import UserManager, AbstractUser
 from django.db import models
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
-from skills.models import Skill
 
 
 from Sinatra.storage_backends import PrivateMediaStorage
@@ -31,7 +30,7 @@ class CustomUser(AbstractUser):
     phone_number = models.CharField(max_length=20, default="")
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
     created_by = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
-    skills = models.ManyToManyField('skills.Skill', related_name='users',blank= True)
+    # skills = models.ManyToManyField('skills.Skill', related_name='users',blank= True)
 
     objects = CustomUserManager()
 

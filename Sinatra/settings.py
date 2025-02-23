@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     "API",
     "User",
     "SideQuests",
-    "skills",
     "Organisation",
 ]
 
