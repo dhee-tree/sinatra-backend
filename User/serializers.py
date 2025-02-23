@@ -40,3 +40,13 @@ class UserSignupSerializer(serializers.ModelSerializer):
         validated_data.pop('password2')
         user = User.objects.create_user(**validated_data)
         return user
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            'uuid', 'username', 'email', 'first_name', 'last_name', 'age',
+            'date_of_birth', 'image', 'middle_name', 'nationality',
+            'phone_number', 'created', 'created_by'
+        ]
+        read_only_fields = ['uuid', 'created', 'created_by']

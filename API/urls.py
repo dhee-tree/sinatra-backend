@@ -5,4 +5,5 @@ urlpatterns = [
     path("auth/", include("Auth.urls")),
     path ("skills/", include("skills.urls")),
     path ("sidequests/", include("SideQuests.urls")),
+    path ("organisations/", include("Organisation.urls")),
 ]

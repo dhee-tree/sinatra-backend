@@ -1,14 +1,14 @@
 from django.core.cache import cache
 from django.http import Http404
 from django.shortcuts import render
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from User.models import CustomUser
-from User.serializers import UserSignupSerializer
+from User.serializers import UserSignupSerializer, UserSerializer
 
 
 class UserListView(APIView):
@@ -69,3 +69,9 @@ class UserSignupView(APIView):
 
 
 
+class UserMeView(generics.RetrieveAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user
