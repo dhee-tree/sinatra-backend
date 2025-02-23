@@ -32,6 +32,7 @@ class CustomUser(AbstractUser):
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
     created_by = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
     skills = models.ManyToManyField('skills.Skill', related_name='users',blank= True)
+    points = models.IntegerField(default=0)
 
     objects = CustomUserManager()
 
