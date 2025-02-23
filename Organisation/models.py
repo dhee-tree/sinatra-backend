@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from User.models import CustomUser
 
 # Create your models here.
 class Organisation(models.Model):
@@ -17,6 +18,7 @@ class Organisation(models.Model):
     address_line_county = models.CharField(max_length=50, default="")
     address_line_city = models.CharField(max_length=50, default="")
     address_line_postcode = models.CharField(max_length=20, default="")
+    created_by = models.ForeignKey(CustomUser, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
