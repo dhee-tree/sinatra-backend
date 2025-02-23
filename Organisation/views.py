@@ -11,6 +11,9 @@ class OrganisationListCreateView(generics.ListCreateAPIView):
     serializer_class = OrganisationSerializer
     permission_classes = [IsAuthenticated]
 
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
 class OrganisationDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Organisation.objects.all()
     serializer_class = OrganisationSerializer
