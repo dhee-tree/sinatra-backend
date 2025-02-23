@@ -14,8 +14,10 @@ gunicorn = "*"
 python-decouple = "*"
 djoser = "*"
 whitenoise = "*"
+boto3 = "*"
+django-storages = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+python_version = "*"

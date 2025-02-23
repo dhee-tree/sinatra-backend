@@ -19,7 +19,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "*"]
+ALLOWED_HOSTS = ["127.0.0.1", "35.178.122.122" ,"*"]
 
 # Application definition
 
@@ -35,12 +35,19 @@ INSTALLED_APPS = [
     "djoser",
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
+    "API",
+    "User",
+    "SideQuests",
+    "skills",
+    "Organisation",
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://127.0.0.1:8000",
+    "http://35.178.122.122",
+    "http://0.0.0.0",
 ]
 
 CORS_ALLOW_METHODS = [
@@ -57,13 +64,17 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://127.0.0.1:8000",
+    "http://35.178.122.122",
+    "http://0.0.0.0",
 ]
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:8000',
     'http://localhost:3000',
+    "http://35.178.122.122",
+    "http://0.0.0.0",
     'http://127.0.0.1:3000',
-    'localhost'
+    'localhost',
 )
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -73,9 +84,9 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    'DEFAULT_PERMISSION_CLASSES': [
-        'User.custom_django_model_permissions.RoleBasedPermissions',
-    ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'User.custom_django_model_permissions.RoleBasedPermissions',
+    # ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
 }
@@ -109,6 +120,8 @@ EMAIL_USE_TLS = True
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -116,7 +129,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Sinatra.urls'
@@ -210,3 +223,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'User.CustomUser'
+
