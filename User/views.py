@@ -39,16 +39,16 @@ class UserListView(APIView):
 #     def get(self, request, uuid, format=None):
 #         user = self.get_object(uuid)
 #         serializer = CustomUserSerializer(user)
-#         return Response(serializer.data)
+#         return Response(serializer.data)z
 
 
-# class CurrentUserView(APIView):
-#     permission_classes = [IsAuthenticated]
-#
-#     def get(self, request):
-#         user = request.user
-#         serializer = CustomUserSerializer(user)
-#         return Response(serializer.data)
+class CurrentUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
 
 
 class UserSignupView(APIView):
@@ -75,3 +75,4 @@ class UserMeView(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
