@@ -3,9 +3,9 @@ services:
     image: sinatra
     container_name: sinatra-django
     ports:
-      - "8000:8000"  # Make sure this is present
+      - "8000:8000"
     expose:
-      - "8000"  # Optional: Makes it available to linked services
+      - "8000"
     environment:
       - DEBUG=1
     command: gunicorn Sinatra.wsgi:application --bind 0.0.0.0:8000
