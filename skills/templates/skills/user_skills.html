@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.username }}'s Skills</title>
+</head>
+<body>
+    <h1>{{ user.username }}'s Skills</h1>
+    
+    <ul>
+        {% for skill in skills %}
+            <li>{{ skill.name }} (Category: {{ skill.category }})</li>
+        {% empty %}
+            <li>No skills assigned.</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
+
