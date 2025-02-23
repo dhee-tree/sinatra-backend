@@ -2,7 +2,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from User.models import CustomUser  
+from User.models import CustomUser
 from .models import Skill
 from .serializers import SkillSerializer
 from rest_framework import status
@@ -14,7 +14,7 @@ class UserSkillsView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        user_uuid = self.kwargs['user_id']
+        user_uuid = self.kwargs['user_uuid']
         user = get_object_or_404(CustomUser, uuid=user_uuid)
         return Skill.objects.filter(user=user)
 
@@ -28,9 +28,9 @@ class AsignSkillView(generics. GenericAPIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
-        skill_id = self.kwargs['skill_id']
+        skill_uuid = self.kwargs['skill_uuid']
 
-        skill = get_object_or_404(Skill, uuid=skill_id)
+        skill = get_object_or_404(Skill, uuid=skill_uuid)
         user= request.user
 
         # Assign the skill to the user
@@ -56,7 +56,7 @@ class DeleteUserSkillView(generics.DestroyAPIView):
 
     def destroy(self, request, *args, **kwargs):
         skill = self.get_object()
-        user_id = self.kwargs['user_id']
+        user_uuid = self.kwargs['user_uuid']
         user = get_object_or_404(CustomUser, uuid=user_id)
         user.skills.remove(skill)
         return Response({"message": "Skill deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
