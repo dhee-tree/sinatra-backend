@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "SideQuests",
     "Organisation",
     "Skills",
+    "Listings",
 ]
 
 CORS_ALLOWED_ORIGINS = [
